@@ -7,10 +7,11 @@ inputs:
     default: '.'
 runs:
   using: "composite"
-  defaults:
-    run:
-      working-directory: ${{ inputs.directory }}
   steps:
+    - name: Switch to working directory
+      shell: bash
+      run: cd ${{ inputs.directory }}
+
     - uses: pnpm/action-setup@v2
       name: Install pnpm
       id: pnpm-install

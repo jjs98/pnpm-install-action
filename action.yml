@@ -1,5 +1,8 @@
 name: 'Pnpm install'
 description: 'Install pnpm with cache'
+branding:
+  icon: 'package'
+  color: 'orange'
 inputs:
   directory:
     description: 'Working directory'

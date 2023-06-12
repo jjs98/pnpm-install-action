@@ -8,6 +8,10 @@ inputs:
     description: 'Working directory'
     required: false
     default: '.'
+  no-frozen-lockfile:
+    description: 'Use pnpm install with or withour frozen lockfile'
+    required: false
+    default: false
 runs:
   using: "composite"
   steps:
@@ -32,6 +36,13 @@ runs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
+    - if: ${{ inputs.no-frozen-lockfile == true }}
+    - name: Install dependencies with --no-frozen-lockfile
+      shell: bash
+      working-directory: ${{ inputs.directory }}
+      run: pnpm install --no-frozen-lockfile
+
+    - if: ${{ inputs.no-frozen-lockfile == false }}
     - name: Install dependencies
       shell: bash
       working-directory: ${{ inputs.directory }}

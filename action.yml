@@ -37,13 +37,13 @@ runs:
           ${{ runner.os }}-pnpm-store-
 
     - name: Install dependencies with --no-frozen-lockfile
-      if: ${{ inputs.no-frozen-lockfile == true }}
+      if: ${{ inputs.no-frozen-lockfile }}
       shell: bash
       working-directory: ${{ inputs.directory }}
       run: pnpm install --no-frozen-lockfile
 
     - name: Install dependencies
-      if: ${{ inputs.no-frozen-lockfile == false }}
+      if: ${{ inputs.no-frozen-lockfile }}
       shell: bash
       working-directory: ${{ inputs.directory }}
       run: pnpm install
